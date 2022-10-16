@@ -51,8 +51,8 @@ public:
 	JSON cpu() const;
 
     /**
-     *
-     * @return
+     * A hash containing all your creeps with creep names as hash keys.
+     * @return  A std::map with the creeps
      */
 	std::map<std::string, Creep> creeps() const;
 
@@ -74,8 +74,16 @@ public:
 
 	Shard shard() const;
 
+    /**
+     * A hash containing all your spawns with spawn names as hash keys.
+     * @return A std::map with the spawns
+     */
 	std::map<std::string, StructureSpawn> spawns() const;
 
+    /**
+     * A hash containing all your structures with structure id as hash keys.
+     * @return A std::map with the structures
+     */
 	std::map<std::string, Structure> structures() const;
 
     /**

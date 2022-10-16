@@ -26,6 +26,13 @@ Value getConstant(const std::string& name);
 
 bool isInstanceOf(const Value& val, const char* name);
 
+/**
+ * Converts a JS array to a std::vector of JS Value
+ * @tparam T Type to the value(default JS::Value)
+ * @param object the object to convert
+ * @return A std::vector of the array values
+ */
+
 template <typename T = Value>
 std::vector<T> jsArrayToVector(const Value& array)
 {
@@ -36,6 +43,13 @@ std::vector<T> jsArrayToVector(const Value& array)
 		result.emplace_back(array[i].as<T>());
 	return result;
 }
+
+/**
+ * Converts a JS object to a std::map of string and JS Value
+ * @tparam T Type to the value(default JS::Value)
+ * @param object the object to convert
+ * @return A std::map of the object keys to values
+ */
 
 template <typename T = Value>
 std::map<std::string, T> jsObjectToMap(const Value& object)
@@ -51,6 +65,11 @@ std::map<std::string, T> jsObjectToMap(const Value& object)
 	return result;
 }
 
+/**
+ * Converts a vector to JS Array
+ * @param vector a std::vector
+ * @return JS Value
+ */
 template <typename T>
 Value vectorToJSArray(const std::vector<T>& vector)
 {
@@ -59,6 +78,14 @@ Value vectorToJSArray(const std::vector<T>& vector)
 		array.set(i, static_cast<JS::Value>(vector[i]));
 	return array;
 }
+
+/**
+ * Converts C++ map to JS object
+ * @tparam K Key
+ * @tparam T Value
+ * @param map A map of type key and value
+ * @return JS Object from the given map
+ */
 
 template <typename K, typename T>
 Value mapToJSObject(const std::map<K, T>& map)
@@ -69,13 +96,34 @@ Value mapToJSObject(const std::map<K, T>& map)
 	return object;
 }
 
+/**
+ * Convenience function for converting JSON to JS Value.
+ * @param json
+ * @return JS::Value parsed from the JSON
+ */
+
 Value fromJSON(const JSON& json);
+
+/**
+ * Convenience function to convert a JS value to JSON
+ * @param value Any JS::Value
+ * @return JSON representation of this value.
+ */
+
 JSON toJSON(const Value& value);
+
+/**
+ * class Console provides a convenient way to access the JS console. Pass it Embindable values or JSON
+ */
 
 class Console
 {
 public:
 	Console();
+
+    /**
+     * A wrapper for console.log
+     */
 
 	template <typename... Args>
 	void log(Args&&... args)
@@ -86,7 +134,9 @@ public:
 private:
 	Value object_;
 };
-
+/**
+ * A global variable for easy access to JS console.
+ */
 extern Console console;
 
 } // namespace JS

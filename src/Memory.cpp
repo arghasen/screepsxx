@@ -18,4 +18,8 @@ void MemoryObject::set(const std::string_view& key, const JSON& value)
 	this->value().set(key.data(), JS::fromJSON(value));
 }
 
+bool MemoryObject::isUndefined(const std::string_view &key) {
+    return value()[key.data()].isUndefined();
+}
+
 } // namespace Screeps
