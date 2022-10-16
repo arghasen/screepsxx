@@ -16,7 +16,7 @@ If you use git, the recommended way is to add library repository as a submodule.
 Or instead you can manually download and extract library files somewhere inside your project.
 ```shell
 cd <your_project_repo>
-git submodule add https://github.com/UltraCoderRU/screepsxx.git
+git submodule add https://github.com/arghasen/screepsxx.git
 ```
 
 3. Check top-level `CMakeLists.txt`.
