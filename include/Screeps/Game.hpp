@@ -38,10 +38,22 @@ public:
 
 	GameObject();
 
+    /**
+     * A hash containing all your construction sites with their id as hash keys.
+     * @return A map of ids to the construction sites
+     */
 	std::map<std::string, ConstructionSite> constructionSites() const;
 
+    /**
+     * An object containing information about your CPU usage
+     * @return The object is returned as JSON with all the CPU properties
+     */
 	JSON cpu() const;
 
+    /**
+     *
+     * @return
+     */
 	std::map<std::string, Creep> creeps() const;
 
 	std::map<std::string, Flag> flags() const;
@@ -66,6 +78,10 @@ public:
 
 	std::map<std::string, Structure> structures() const;
 
+    /**
+     * System game tick counter. It is automatically incremented on every tick
+     * @return the tick value
+     */
 	int time() const;
 
 	JSON cpuGetHeapStatistics();
