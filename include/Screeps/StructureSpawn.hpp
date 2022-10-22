@@ -26,11 +26,35 @@ public:
 
 	Store store() const;
 
+    /**
+     * Start the creep spawning process.
+     * @param body A vector defining the body parts
+     * @param name name of the creep
+     * @return Return Code of the action as defined in constants.
+     */
 	int spawnCreep(const std::vector<std::string>& body, const std::string& name);
-	int spawnCreep(const std::vector<std::string>& body, const std::string& name, const JSON& options);
 
+    /**
+     * Start the creep spawning process.
+     * @param body A vector defining the body parts
+     * @param name name of the creep
+     * @param options An object with additional options for the spawning process.
+     * @return Return Code of the action as defined in constants.
+     */
+    int spawnCreep(const std::vector<std::string>& body, const std::string& name, const JSON& options);
+
+    /**
+     * Kill the creep and drop up to 100% of resources spent on its spawning and boosting depending on remaining life time. The target should be at adjacent square. Energy return is limited to 125 units per body part.
+     * @param target Creep to recycle
+     * @return Return Code of the action as defined in constants.
+     */
 	int recycleCreep(const Creep& target);
 
+    /**
+     * Increase the remaining time to live of the target creep.
+     * @param target Creep to renew
+     * @return Return Code of the action as defined in constants.
+     */
 	int renewCreep(const Creep& target);
 };
 

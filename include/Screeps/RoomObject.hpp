@@ -8,7 +8,9 @@ namespace Screeps {
 class Effect;
 class RoomPosition;
 class Room;
-
+/**
+ * Any object with a position in a room. Almost all game objects prototypes are derived from RoomObject
+ */
 class RoomObject : public Object
 {
 public:
@@ -20,6 +22,10 @@ public:
 
 	RoomPosition pos() const;
 
+    /**
+     * Gets the room the current structure/creep is in
+     * @return The Room
+     */
 	Room room() const;
 };
 

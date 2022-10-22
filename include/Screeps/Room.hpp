@@ -18,6 +18,10 @@ public:
 
 	std::optional<StructureController> controller() const;
 
+    /**
+     * Total amount of energy available in all spawns and extensions in the room.
+     * @return the energy available
+     */
 	int energyAvailable() const;
 
 	int energyCapacityAvailable() const;
@@ -25,6 +29,10 @@ public:
 	JSON memory() const;
 	void setMemory(const JSON&);
 
+    /**
+     * Gets the name of the room
+     * @return A string containing the name of the room
+     */
 	std::string name() const;
 
 	std::optional<StructureStorage> storage() const;

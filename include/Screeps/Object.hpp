@@ -4,9 +4,9 @@
 #include "JS.hpp"
 
 namespace Screeps {
-    /**
-     * class Object describes a JS object and as such is the main way to interact with JS data
-     */
+/**
+ * class Object describes a JS object and as such is the main way to interact with JS data
+ */
 class Object
 {
 public:
@@ -29,13 +29,13 @@ public:
 	void setValue(JS::Value value);
 
     /**
-    * get the underlying JS value (non const version, operator based)
+    * get the underlying JS value (non const version, typecast based)
     * @return JS value
     */
 	operator JS::Value&();
 
     /**
-    * get the underlying JS value (const version, operator based)
+    * get the underlying JS value (const version, typecast based)
     * @return JS value
     */
 	operator const JS::Value&() const;
