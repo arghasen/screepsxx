@@ -37,6 +37,17 @@ bool is(const std::unique_ptr<RoomObject>& ptr)
 	return dynamic_cast<T*>(ptr.get());
 }
 
+template <typename T>
+T* asPtr(const std::unique_ptr<RoomObject>& ptr)
+{
+    return dynamic_cast<T*>(ptr.get());
+}
+
+template <typename T>
+T as(const std::unique_ptr<RoomObject>& ptr)
+{
+    return *dynamic_cast<T*>(ptr.get());
+}
 } // namespace Screeps
 
 #endif // SCREEPS_ROOM_OBJECT_HPP
