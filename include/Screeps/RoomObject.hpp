@@ -31,22 +31,66 @@ public:
 
 std::unique_ptr<RoomObject> createRoomObject(JS::Value object);
 
+/**
+ * Checks if the RoomObject is an instance of the given type
+ * @tparam T A type to check for
+ * @param ptr RoomObject unique ptr
+ * @return true if the RoomObject is type of the given type
+ */
 template <typename T>
 bool is(const std::unique_ptr<RoomObject>& ptr)
 {
 	return dynamic_cast<T*>(ptr.get());
 }
 
+/**
+ * Converts the RoomObject to a pointer of the given type
+ * @tparam T A type to check for
+ * @param ptr RoomObject unique ptr
+ * @return  Pointer to the converted type, or nullptr if type doesnt match
+ */
 template <typename T>
-T* asPtr(const std::unique_ptr<RoomObject>& ptr)
+T* asPtr_safe(const std::unique_ptr<RoomObject>& ptr)
 {
     return dynamic_cast<T*>(ptr.get());
 }
 
+/**
+ * Converts the RoomObject to a pointer of the given type(Undefined behaviour if the type is definitely correct)
+ * Faster than the corresponding asPtr_safe function
+ * @tparam T A type to check for
+ * @param ptr RoomObject unique ptr
+ * @return  Pointer to the converted type, or nullptr if type doesnt match
+ */
+template <typename T>
+T* asPtr(const std::unique_ptr<RoomObject>& ptr)
+{
+    return static_cast<T*>(ptr.get());
+}
+
+/**
+ * Converts the RoomObject to an instance of the given type
+ * @tparam T A type to check for
+ * @param ptr RoomObject unique ptr
+ * @return  Object of the converted type
+ */
+template <typename T>
+T as_safe(const std::unique_ptr<RoomObject>& ptr)
+{
+    return *dynamic_cast<T*>(ptr.get());
+}
+
+/**
+ * Converts the RoomObject to an instance of the given type(Undefined behaviour if the type is definitely correct)
+ * Faster than the corresponding as_safe function
+ * @tparam T A type to check for
+ * @param ptr RoomObject unique ptr
+ * @return  Object of the converted type
+ */
 template <typename T>
 T as(const std::unique_ptr<RoomObject>& ptr)
 {
-    return *dynamic_cast<T*>(ptr.get());
+    return *static_cast<T*>(ptr.get());
 }
 } // namespace Screeps
 
